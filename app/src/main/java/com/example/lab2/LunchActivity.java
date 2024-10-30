@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -11,21 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LunchActivity extends AppCompatActivity {
+    List<FoodModel> foodModelList;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ArrayList<FoodModel> foodModelArrayList = new ArrayList<>();
-        foodModelArrayList.add(new FoodModel(R.drawable.pic_suon_nuong, "Burger", "10", "8", 4));
-        foodModelArrayList.add(new FoodModel(R.drawable.pic_suon_nuong, "Pizza", "20", "15", 3));
-
-
-        RecyclerView recyclerView = findViewById(R.id.recyclerItem);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-//        MyAdapter myAdapter = new MyAdapter(foodModelArrayList);
-//        recyclerView.setAdapter(myAdapter);
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -35,6 +29,24 @@ public class LunchActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+//        this.overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
 
+        Toolbar toolbar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+        foodModelList = new ArrayList<FoodModel>();
+
+        foodModelList.add(new FoodModel(R.drawable.pic_suon_nuong, "Suon nướng", "10000đ", "8000đ", 4));
+        foodModelList.add(new FoodModel(R.drawable.pic_thit_kho_trung, "Thịt kho trứng", "20000đ", "15000đ", 3));
+        foodModelList.add(new FoodModel(R.drawable.pic_pizza, "Pizza", "10000đ", "8000đ", 4));
+        foodModelList.add(new FoodModel(R.drawable.pic_suon_nuong, "Pizza", "10000đ", "8000đ", 4));
+        foodModelList.add(new FoodModel(R.drawable.pic_suon_nuong, "Pizza", "10000đ", "8000đ", 4));
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new MyAdapter(this, foodModelList));
     }
 }

@@ -1,11 +1,11 @@
 package com.example.lab2;
 
 public class FoodModel {
-    private int foodImage;
-    private String foodName;
-    private String foodPrice;
-    private String foodDiscountPrice;
-    private int foodRating;
+    int foodImage;
+    String foodName;
+    String foodPrice;
+    String foodDiscountPrice;
+    int foodRating;
 
     public FoodModel(int foodImage, String foodName, String foodPrice,String foodDiscountPrice, int foodRating) {
         this.foodImage = foodImage;
